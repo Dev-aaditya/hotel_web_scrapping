@@ -32,12 +32,12 @@ mumbai = 'https://www.booking.com/searchresults.en-gb.html?ss=Mumbai&ssne=New+De
 
 def web_scrapper2(web_url, f_name):
     
-    # greetings
+    
     print("Thank you sharing the url and file name!\n⏳\nReading the content!")
     
     num = random.randint(3, 7)
     
-    # processing
+    
     time.sleep(num)
 
     
@@ -52,18 +52,16 @@ def web_scrapper2(web_url, f_name):
         html_content = response.text
         
         
-        # creating soup
+        
         soup =  BeautifulSoup(html_content, 'lxml')
         
-        # print(soup.prettify())
         
-        # main containers
         hotel_divs = soup.find_all('div', role="listitem")
         
         with open(f'{f_name}.csv', 'w', encoding='utf-8') as file_csv:
             writer = csv.writer(file_csv)
             
-            # adding header
+            
             writer.writerow(['hotel_name', 'locality', 'price', 'rating', 'score', 'review', 'link'])
         
             for hotel in hotel_divs:
@@ -73,7 +71,7 @@ def web_scrapper2(web_url, f_name):
                 location = hotel.find('span', class_="aee5343fdb def9bc142a").text.strip()
                 location if location else "NA"
                 
-                # price
+                
                 price = hotel.find('span', class_="f6431b446c fbfd7c1165 e84eb96b1f").text.replace('₹ ', '')
                 if price:
                     price
@@ -91,12 +89,12 @@ def web_scrapper2(web_url, f_name):
                 review if review else 'NA'
                 
                 
-                # getting link
+                
                 link = hotel.find('a', href=True).get('href')
                 link if link else 'NA'
                 
 
-                # saving the file into csv
+                
                 writer.writerow([hotel_name, location, price, rating, score, review, link])
     
             
@@ -118,11 +116,11 @@ def web_scrapper2(web_url, f_name):
 
 
 
-# if using this script directly than below task will be executed
+
 if __name__ == '__main__':
 
     url = input("Please enter url! :")
     fn = input('Please give file name! :')
 
-    # calling the function
+    
     web_scrapper2(url, fn)
