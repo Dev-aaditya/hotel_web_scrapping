@@ -48,9 +48,4 @@ hotel_name, locality, price, rating, score, review, link
 ...
 ```
 
-## ⚠️ Disclaimer
-This project is intended for **educational purposes** only. Scraping websites without permission may violate terms of service. Use responsibly and check Booking.com's scraping policies before deploying.
-
----
-💡 **Happy Scraping!** 🚀
 
